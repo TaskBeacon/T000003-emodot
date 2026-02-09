@@ -1,0 +1,11 @@
+id: T000003
+slug: emodot
+title: "Emotional Dot-Probe Task (EmoDot)"
+acquisition: eeg
+variant: baseline
+cognitive_domain: []
+maturity: piloted
+version:
+  release_tag: ""
+evidence: []
+maintainer: []
