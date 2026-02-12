@@ -1,9 +1,8 @@
-from psyflow import BlockUnit,StimBank, StimUnit,SubInfo,TaskSettings,TriggerSender
+﻿from psyflow import BlockUnit,StimBank, StimUnit,SubInfo,TaskSettings,initialize_triggers
 from psyflow import load_config,count_down, initialize_exp
 import pandas as pd
 from psychopy import core
 from functools import partial
-import serial
 from src import run_trial, get_stim_list_from_assets, AssetPool
 
 
@@ -21,16 +20,7 @@ settings.add_subinfo(subject_data)
 # 4. setup triggers
 settings.triggers = cfg['trigger_config']
 
-ser = serial.serial_for_url("loop://", baudrate=115200, timeout=1)
-# ser = serial.Serial("COM3", baudrate=115200, timeout=1)
-if not ser.is_open:
-    ser.open()
-
-# Create TriggerSender
-trigger_sender = TriggerSender(
-    trigger_func=lambda code: ser.write(bytes([1, 225, 1, 0, code])),
-    post_delay=0.001
-)
+trigger_runtime = initialize_triggers(cfg)
 
 # 5. Set up window & input
 win, kb = initialize_exp(settings)
@@ -47,7 +37,7 @@ settings.save_to_json() # save all settings to json file
 png_list=get_stim_list_from_assets()
 asset_pool=AssetPool(png_list)
 
-trigger_sender.send(settings.triggers.get("exp_onset"))
+trigger_runtime.send(settings.triggers.get("exp_onset"))
 # 8. Run experiment
 StimUnit('instruction_text', win, kb)\
     .add_stim(stim_bank.get('instruction_text'))\
@@ -66,9 +56,9 @@ for block_i in range(settings.total_blocks):
         window=win,
         keyboard=kb
     ).generate_conditions()\
-    .on_start(lambda b: trigger_sender.send(settings.triggers.get("block_onset")))\
-    .on_end(lambda b: trigger_sender.send(settings.triggers.get("block_end")))\
-    .run_trial(partial(run_trial, stim_bank=stim_bank, asset_pool=asset_pool, trigger_sender=trigger_sender))\
+    .on_start(lambda b: trigger_runtime.send(settings.triggers.get("block_onset")))\
+    .on_end(lambda b: trigger_runtime.send(settings.triggers.get("block_end")))\
+    .run_trial(partial(run_trial, stim_bank=stim_bank, asset_pool=asset_pool, trigger_runtime=trigger_runtime))\
     .to_dict(all_data)\
     .to_dict(block_data)
 
@@ -85,11 +75,13 @@ StimUnit('goodbye',win,kb)\
     .add_stim(stim_bank.get('good_bye'))\
     .wait_and_continue(terminate=True)
 
-trigger_sender.send(settings.triggers.get("exp_end"))
+trigger_runtime.send(settings.triggers.get("exp_end"))
 # 9. Save data
 df = pd.DataFrame(all_data)
 df.to_csv(settings.res_file, index=False)
 
 # 10. Close everything
-ser.close()
+trigger_runtime.close()
 core.quit()
+
+

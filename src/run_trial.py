@@ -1,15 +1,15 @@
-from psyflow import StimUnit
+﻿from psyflow import StimUnit
 import os
 from functools import partial
 from src import assign_stim_from_condition
 
-def run_trial(win, kb, settings, condition, stim_bank, asset_pool, trigger_sender):
+def run_trial(win, kb, settings, condition, stim_bank, asset_pool, trigger_runtime):
     """
     Run a single emotional dot-target trial:
-    fixation → face pair → target + response
+    fixation â†’ face pair â†’ target + response
     """
     trial_data = {"condition": condition}
-    make_unit = partial(StimUnit, win=win, kb=kb, triggersender=trigger_sender)
+    make_unit = partial(StimUnit, win=win, kb=kb, runtime=trigger_runtime)
 
     trial_info = assign_stim_from_condition(condition, asset_pool)
     left_stim = stim_bank.rebuild('left_stim', image=os.path.join('assets', trial_info['left_stim']))
