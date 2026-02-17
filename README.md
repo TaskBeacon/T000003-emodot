@@ -1,148 +1,59 @@
-# Emotional Dot-Probe Task (EmoDot)
+ï»¿# Emotional Dot-Probe Task (EmoDot)
 
-![Maturity: piloted](https://img.shields.io/badge/Maturity-piloted-65a30d?style=for-the-badge&labelColor=c2410c)
+![Maturity: piloted](https://img.shields.io/badge/Maturity-piloted-16a34a?style=flat-square&labelColor=111827)
 
-| Field                | Value                        |
-|----------------------|------------------------------|
-| Name                 | Emotional Dot-Probe Task (EmoDot) |
-| Version              | main (1.0)                          |
-| URL / Repository     | https://github.com/TaskBeacon/T000003-emodot   |
-| Short Description    | A task for assessing attentional bias toward emotional facial stimuli |
-| Created By           | Zhipeng Cao (zhipeng30@foxmail.com)          |
-| Date Updated         | 2025/06/22      |
-| PsyFlow Version      | 0.1.0               |
-| PsychoPy Version     | 2025.1.1                        |
-| Modality             | Behavior/EEG                      |
+| Field | Value |
+|---|---|
+| Name | Emotional Dot-Probe Task (EmoDot) |
+| Version | v1.1.0 |
+| URL / Repository | https://github.com/TaskBeacon/T000003-emodot |
+| Short Description | Emotional/neutral face-pair dot-probe task for attentional bias and EEG |
+| Created By | Zhipeng Cao (zhipeng30@foxmail.com) |
+| Date Updated | 2026-02-17 |
+| PsyFlow Version | 0.1.9 |
+| PsychoPy Version | 2025.1.1 |
+| Modality | Behavior/EEG |
 | Language | Chinese |
 | Voice Name | zh-CN-YunyangNeural |
 
-```{note}
-The emotional expression stimulus are not publicly available due to potential copyright issues.
-```
+## Overview
 
+EmoDot presents face pairs followed by a left/right dot target.
+Participants respond with `f/j` to indicate target side.
 
-## 1. Task Overview
+## Runtime Modes
 
-The Emotional Dot-Probe (EmoDot) task assesses attentional biases toward emotional stimuli. Participants are briefly shown a pair of face imagesâ€”one emotional (positive or negative) and one neutralâ€”followed by a target (a white circle) appearing on the left or right side. Participants must quickly respond to the targetâ€™s position by pressing a corresponding key. The emotional valence, facial gender, and target location are all experimentally manipulated. The task also incorporates trial-by-trial stimulus randomization from a categorized image pool to ensure balanced and unpredictable face pairings.
+- Human (default): `python main.py`
+- QA: `python main.py qa --config config/config_qa.yaml`
+- Scripted sim: `python main.py sim --config config/config_scripted_sim.yaml`
+- Sampler sim: `python main.py sim --config config/config_sampler_sim.yaml`
 
-## 2. Task Flow
+## Config Files
 
-### Block-Level Flow
+- `config/config.yaml`: base human run profile
+- `config/config_qa.yaml`: QA/dev profile (20-trial smoke run)
+- `config/config_scripted_sim.yaml`: scripted simulation profile
+- `config/config_sampler_sim.yaml`: sampler simulation profile
 
-| Step                       | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| Load Config                | Load task configuration, subject info schema, stimuli, triggers             |
-| Collect Subject Info       | Capture ID, name, age, gender                                               |
-| Setup Triggers             | Initialize trigger sender via serial port                                   |
-| Initialize Window/Input    | Set up PsychoPy window and keyboard                                         |
-| Load Stimuli               | Build static stimuli (shapes, text, etc.), preload and convert instructions |
-| Load Assets                | Retrieve image files from asset folder and organize by category             |
-| Initialize Stim Pool       | Create randomized per-category pools for sampling stimuli                  |
-| Show Instructions          | Display instruction text and synthesized voice                              |
-| Loop Over Blocks           | Run 3 blocks Ã— 60 trials (with stimulus pairing + response logging)         |
-| Show Block Feedback        | Display summary (accuracy) after each block                                 |
-| Show Goodbye               | Display thank-you message                                                   |
-| Save Data                  | Save full trial data to CSV                                                 |
-| Close                      | Close serial connection and PsychoPy window                                 |
+## Assets and Copyright Workaround
 
-### Trial-Level Flow
+Original emotional face stimuli are not committed because of copyright constraints.
+This repo includes placeholder BMP assets for QA/sim/contract validation only.
 
-| Step                | Description                                                                 |
-|---------------------|-----------------------------------------------------------------------------|
-| Fixation            | Present fixation cross (0.8â€?.0s) with trigger                              |
-| Cue Display         | Show pair of face images (left/right) for 0.5s with trigger                 |
-| Interval            | Brief fixation interval (0.4â€?.6s)                                          |
-| Target              | Show white circle target on left or right; collect response (up to 1.0s)    |
-| Response Logging    | Record accuracy, RT, and target location                                    |
+See `assets/README.md` for:
+- placeholder naming contract (`HF*`, `HM*`, `NEF*`, `NEM*`, `SAF*`, `SAM*`)
+- how to replace placeholders with licensed task stimuli
+- expected path/location requirements
 
-### Other Logic
+## Outputs
 
-| Component                     | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| `AssetPool`                   | A class that manages condition-specific stimulus pools using shuffle-on-depletion logic |
-| `get_stim_list_from_assets()` | Scans the `assets/` directory for `.bmp` images and categorizes them by prefix (e.g., HF, SAF) |
-| `assign_stim_from_condition()`| Given a trial condition string (e.g., `PN_F_L`), selects appropriate stimuli and target side |
-| Condition Encoding            | Each condition encodes emotion pairing (PN, SN, etc.), gender (M/F), and target side (L/R) |
+- Human: `outputs/human/`
+- QA: `outputs/qa/`
+- Scripted sim: `outputs/sim/`
+- Sampler sim: `outputs/sim_sampler/`
 
-These logic components collectively ensure:
-- Dynamic, trial-specific face assignment per condition
-- Balanced sampling across categories
-- Prevention of stimulus repetition until category depletion
-- Flexible extensibility for new emotion/gender pairings
+## Task Notes
 
-## 3. Configuration Summary
-
-### a. Subject Info
-
-| Field       | Meaning                        |
-|-------------|--------------------------------|
-| subject_id  | Participant ID (101â€?99)       |
-| subname     | Participant name (pinyin)      |
-| age         | Age (5â€?0)                     |
-| gender      | Gender (Male/Female)           |
-
-### b. Window Settings
-
-| Parameter             | Value         |
-|-----------------------|---------------|
-| size                  | [1920, 1080]  |
-| units                 | deg           |
-| screen                | 1             |
-| bg_color              | black         |
-| fullscreen            | True          |
-| monitor_width_cm      | 59.7          |
-| monitor_distance_cm   | 72            |
-
-### c. Stimuli
-
-| Name            | Type    | Description                                         |
-|------------------|---------|-----------------------------------------------------|
-| fixation         | text    | White "+" central fixation                          |
-| left_stim        | image   | Face image on the left (dynamic)                    |
-| right_stim       | image   | Face image on the right (dynamic)                   |
-| left_target      | circle  | White circle target (left side)                     |
-| right_target     | circle  | White circle target (right side)                    |
-| block_break      | text    | Summary screen with accuracy between blocks         |
-| instruction_text | textbox | Multi-line instructions on cue-target mapping       |
-| good_bye         | textbox | Final message post-task                             |
-
-### d. Timing
-
-| Phase              | Duration (s)     |
-|--------------------|------------------|
-| fixation           | random 0.8â€?.0   |
-| cue display        | 0.5              |
-| interval           | random 0.4â€?.6   |
-| target             | 1.0              |
-
-### e. Triggers
-
-| Event Type             | Example Code |
-|------------------------|--------------|
-| Task Start             | 98           |
-| Task End               | 99           |
-| Block Start/End        | 198 / 199    |
-| Fixation Onset         | 11â€?01       |
-| Cue Onset              | 12â€?02       |
-| Target Onset           | 13â€?03       |
-| Key Press              | 68           |
-| No Response            | 69           |
-
-*Note: Each condition (e.g., PN_F_L) has unique fixation/cue/target onset and response triggers.*
-
-## 4. Methods (for academic publication)
-
-Participants performed a computerized emotional dot-probe task designed to probe attentional biases toward emotional facial expressions. Each trial began with a fixation cross (0.8â€?.0 seconds), followed by a pair of face stimuli (one emotionalâ€”positive or negativeâ€”and one neutral), presented side by side for 0.5 seconds. After a brief inter-stimulus interval (0.4â€?.6 seconds), a target dot appeared on either the left or right side of the screen. Participants were instructed to respond as quickly and accurately as possible by pressing the â€œFâ€?key for left and â€œJâ€?for right.
-
-The experimental conditions conterbalanced the emotional content (positive, negative, or neutral), the gender of the faces (male/female), and the target location (left/right). A pool of facial images was pre-organized by emotion and gender categories and dynamically sampled to prevent stimulus repetition. Each image pair was randomly drawn per trial while satisfying the specified emotion/gender constraints.
-
-The experiment consisted of **3 blocks** with **60 trials each**, totaling **180 trials**. Trial types were fully randomized using a blocked condition design. At the end of each block, participants received feedback about their hit rate (i.e., correct target detections). 
-
-## 5. References
->MacLeod, C., Mathews, A., & Tata, P. (1986). Attentional bias in emotional disorders. Journal of Abnormal Psychology, 95, 15â€?0.
-
->Van Rooijen, R., Ploeger, A., & Kret, M. E. (2017). The dot-probe task to measure emotional attention: A suitable measure in comparative studies?. Psychonomic bulletin & review, 24, 1686-1717.
-
-A study that seems worth paying attention to
-
->Xu, I., Passell, E., Strong, R. W., Grinspoon, E., Jung, L., Wilmer, J. B., & Germine, L. T. (2025). No evidence of reliability across 36 variations of the emotional dot-probe task in 9,600 participants. Clinical Psychological Science, 13(2), 261-277.
+- Trigger config uses structured schema: `triggers.map/driver/policy/timing`.
+- Trial responder context is wired in `src/run_trial.py` via `set_trial_context(...)`.
+- Task-specific sampler is in `responders/task_sampler.py`.

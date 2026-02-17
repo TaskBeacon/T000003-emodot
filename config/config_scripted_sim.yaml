@@ -1,7 +1,8 @@
 # ============================================================================
-# Base config (human run)
-# - Used by: python main.py
-# - Scope: human experiment only (no qa/sim section in this file)
+# Scripted simulation config
+# - Used by: python main.py sim --config config/config_scripted_sim.yaml
+# - Scope: scripted simulation only (no qa section in this file)
+# - Profile: short smoke run for responder plumbing checks
 # ============================================================================
 
 # === Subject Form ===========================================================
@@ -52,13 +53,13 @@ window:
 # === Task ===================================================================
 task:
   task_name: eeg_emodot
-  save_path: ./outputs/human
+  save_path: ./outputs/sim
   language: Chinese
   voice_name: zh-CN-YunyangNeural
-  voice_enabled: true
-  total_blocks: 3
-  total_trials: 180
-  trial_per_block: 60
+  voice_enabled: false
+  total_blocks: 1
+  total_trials: 20
+  trial_per_block: 20
   conditions:
     - PN_F_L
     - PN_F_R
@@ -136,27 +137,17 @@ stimuli:
   block_break:
     type: text
     text: |
-      第 {block_num} / {total_blocks} 部分完成
+      Scripted Sim分段完成：{block_num}/{total_blocks}
       击中率：{accuracy:.2f}
-
-      请在充分休息后按下空格键
-      进入下一个部分
+      按空格继续。
     color: white
     height: 0.78
 
   instruction_text:
     type: textbox
     text: |
-      【情绪点探测任务说明】
-
-      在本任务中，您将看到注视点和一对面孔图片。
-      随后会出现一个目标点。
-
-      如果目标点在左侧，请按【f】；
-      如果目标点在右侧，请按【j】。
-
-      请尽可能快速且准确作答。
-      准备好后，请按【空格键】开始任务。
+      【EmoDot Scripted Sim】
+      按【空格键】开始。
     color: white
     font: SimHei
     alignment: center
@@ -166,16 +157,10 @@ stimuli:
       - 20
       - 5
 
-  instruction_text_voice:
-    type: sound
-    file: assets/instruction_text_voice.mp3
-
   good_bye:
     type: textbox
     text: |
-      【任务结束】
-
-      感谢您的参与！
+      Scripted Sim结束。
       请按【空格键】退出任务。
     color: white
     font: SimHei
@@ -189,13 +174,13 @@ stimuli:
 # === Timing =================================================================
 timing:
   fixation_duration:
-    - 0.8
-    - 1.0
-  cue_duration: 0.5
-  interval_duration:
     - 0.4
-    - 0.6
-  target_duration: 1.0
+    - 0.5
+  cue_duration: 0.15
+  interval_duration:
+    - 0.1
+    - 0.15
+  target_duration: 0.35
 
 # === Triggers ===============================================================
 triggers:
@@ -265,3 +250,19 @@ triggers:
 
   timing:
     post_delay_s: 0.001
+
+# === Simulation Runtime =====================================================
+sim:
+  output_dir: outputs/sim
+  seed: 0
+  participant_id: sim001
+  session_id: sub-sim001_task-eeg_emodot_seed0
+  log_path: outputs/sim/sub-sim001_task-eeg_emodot_seed0_sim_events.jsonl
+  policy: warn
+  default_rt_s: 0.2
+  clamp_rt: false
+  responder:
+    type: scripted
+    kwargs:
+      key: f
+      rt_s: 0.25
