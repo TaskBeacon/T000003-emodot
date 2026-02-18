@@ -5,7 +5,7 @@ from psyflow import StimUnit, set_trial_context
 
 from src import assign_stim_from_condition
 
-# trial stages in contract order: cue -> anticipation -> target -> feedback
+# trial stages use task-specific phase labels via set_trial_context(...)
 _TRIAL_COUNTER = 0
 
 
@@ -51,32 +51,32 @@ def run_trial(
     target_position = str(trial_info["target_position"])
     correct_key = settings.left_key if target_position == "left" else settings.right_key
 
-    # cue
+    # phase: pre_face_fixation
     cue_unit = make_unit(unit_label="fixation").add_stim(stim_bank.get("fixation"))
     set_trial_context(
         cue_unit,
         trial_id=trial_id,
-        phase="cue",
+        phase="pre_face_fixation",
         deadline_s=_deadline_s(settings.fixation_duration),
         valid_keys=list(settings.key_list),
         block_id=block_id,
         condition_id=condition_id,
-        task_factors={"condition": condition_id, "stage": "fixation", "block_idx": block_idx},
+        task_factors={"condition": condition_id, "stage": "pre_face_fixation", "block_idx": block_idx},
         stim_id="fixation",
     )
     cue_unit.show(duration=settings.fixation_duration, onset_trigger=settings.triggers.get("fixation_onset")).to_dict(trial_data)
 
-    # anticipation
+    # phase: face_pair_preview
     anticipation_unit = make_unit(unit_label="cues").add_stim(left_stim).add_stim(right_stim)
     set_trial_context(
         anticipation_unit,
         trial_id=trial_id,
-        phase="anticipation",
+        phase="face_pair_preview",
         deadline_s=_deadline_s(settings.cue_duration),
         valid_keys=list(settings.key_list),
         block_id=block_id,
         condition_id=condition_id,
-        task_factors={"condition": condition_id, "stage": "face_pair", "block_idx": block_idx},
+        task_factors={"condition": condition_id, "stage": "face_pair_preview", "block_idx": block_idx},
         stim_id=f"{condition_id}_faces",
         stim_features={"left_asset": left_asset, "right_asset": right_asset},
     )
@@ -87,20 +87,20 @@ def run_trial(
 
     make_unit(unit_label="interval").add_stim(stim_bank.get("fixation")).show(duration=settings.interval_duration).to_dict(trial_data)
 
-    # target
+    # phase: dot_probe_response
     target_stim = stim_bank.get(f"{target_position}_target")
     target_unit = make_unit(unit_label="target").add_stim(target_stim)
     set_trial_context(
         target_unit,
         trial_id=trial_id,
-        phase="target",
+        phase="dot_probe_response",
         deadline_s=_deadline_s(settings.target_duration),
         valid_keys=list(settings.key_list),
         block_id=block_id,
         condition_id=condition_id,
         task_factors={
             "condition": condition_id,
-            "stage": "target",
+            "stage": "dot_probe_response",
             "target_position": target_position,
             "correct_key": correct_key,
             "block_idx": block_idx,
@@ -118,6 +118,6 @@ def run_trial(
     )
     target_unit.to_dict(trial_data)
 
-    # feedback
+    # outcome display
     make_unit(unit_label="feedback").show(duration=0.0).to_dict(trial_data)
     return trial_data
