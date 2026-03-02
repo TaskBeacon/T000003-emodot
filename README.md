@@ -5,11 +5,11 @@
 | Field | Value |
 |---|---|
 | Name | Emotional Dot-Probe Task (EmoDot) |
-| Version | v1.1.0 |
+| Version | v1.1.3 |
 | URL / Repository | https://github.com/TaskBeacon/T000003-emodot |
 | Short Description | Emotional/neutral face-pair dot-probe task for attentional bias and EEG |
 | Created By | Zhipeng Cao (zhipeng30@foxmail.com) |
-| Date Updated | 2026-02-17 |
+| Date Updated | 2026-03-02 |
 | PsyFlow Version | 0.1.9 |
 | PsychoPy Version | 2025.1.1 |
 | Modality | Behavior/EEG |
@@ -35,6 +35,12 @@ Participants respond with `f/j` to indicate target side.
 - `face_pair_preview`: emotional/neutral face pair display.
 - `dot_probe_response`: dot-probe response window with key capture.
 
+### Controller Logic
+
+- Trial condition scheduling uses `BlockUnit.generate_conditions()` from config-defined `task.conditions`.
+- Face assets are selected by condition via `AssetPool` with deterministic seeded shuffle/replenish behavior.
+- Correct key is derived from target side (`L/R`) encoded in condition tokens.
+
 ## Runtime Modes
 
 - Human (default): `python main.py`
@@ -48,6 +54,47 @@ Participants respond with `f/j` to indicate target side.
 - `config/config_qa.yaml`: QA/dev profile (20-trial smoke run)
 - `config/config_scripted_sim.yaml`: scripted simulation profile
 - `config/config_sampler_sim.yaml`: sampler simulation profile
+
+### a. Subject Info
+
+| Field | Type | Constraints |
+|---|---|---|
+| `subject_id` | int | 3 digits, 101-999 |
+| `subname` | string | free text |
+| `age` | int | 5-60 |
+| `gender` | choice | `Male`, `Female` |
+
+### b. Window Settings
+
+| Key | Value |
+|---|---|
+| `size` | `[1920, 1080]` |
+| `units` | `deg` |
+| `screen` | `1` |
+| `bg_color` | `black` |
+| `fullscreen` | `true` |
+| `monitor_width_cm` | `59.7` |
+| `monitor_distance_cm` | `72` |
+
+### c. Stimuli
+
+| Stimulus ID | Type | Role |
+|---|---|---|
+| `fixation` | `text` | central fixation cross |
+| `left_stim`, `right_stim` | `image` | face pair cue stage |
+| `left_target`, `right_target` | `circle` | probe target for side discrimination |
+| `instruction_text` | `textbox` | pre-task instruction |
+| `block_break` | `text` | inter-block feedback |
+| `good_bye` | `textbox` | task completion screen |
+
+### d. Timing
+
+| Timing Key | Human Config |
+|---|---|
+| `fixation_duration` | `[0.8, 1.0]` |
+| `cue_duration` | `0.5` |
+| `interval_duration` | `[0.4, 0.6]` |
+| `target_duration` | `1.0` |
 
 ## Assets and Copyright Workaround
 

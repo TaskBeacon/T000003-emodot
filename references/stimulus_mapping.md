@@ -1,0 +1,12 @@
+# Stimulus Mapping
+
+## Mapping Table
+
+| Condition | Stage/Phase | Stimulus IDs | Participant-Facing Content | Source Paper ID | Evidence (quote/figure/table) | Implementation Mode | Asset References | Notes |
+|---|---|---|---|---|---|---|---|---|
+| `all_conditions` | `pre_face_fixation` | `fixation` | Central fixation cross before each face-pair trial. | `W2125651023` | Dot-probe workflows include fixation to stabilize gaze before cue display. | `psychopy_builtin` | `config/*.yaml -> stimuli.fixation` | Uses jittered fixation duration in human config. |
+| `PN_*_*`, `NP_*_*`, `SN_*_*`, `NS_*_*`, `NN_*_*` | `face_pair_preview` | `left_stim`, `right_stim` (rebuilt per trial from selected face files) | Simultaneous left/right face pair where emotion order depends on condition token. | `W2125651023` | Face-expression pair display is the cue stage in emotional dot-probe tasks. | `licensed_external_asset` | `assets/*.bmp` loaded by `src/utils.py::get_stim_list_from_assets` | Repository currently ships placeholders; licensed replacements are required for real studies. |
+| `all_conditions` | `inter_stimulus_interval` | `fixation` | Brief fixation interval after face pair and before dot probe. | `W2172073901` | Probe timing relative to face cue can alter measured bias effects. | `psychopy_builtin` | `config/*.yaml -> timing.interval_duration` | Interval is implemented as a separate `StimUnit` stage (`unit_label=interval`). |
+| `*_L` conditions | `dot_probe_response` | `left_target` | Dot probe appears on the left; participant responds with left key (`f`). | `W4213002248` | Dot-probe response requires side discrimination of probe location. | `psychopy_builtin` | `config/*.yaml -> stimuli.left_target` | Correct key inferred from target side in `src/run_trial.py`. |
+| `*_R` conditions | `dot_probe_response` | `right_target` | Dot probe appears on the right; participant responds with right key (`j`). | `W4213002248` | Probe side determines response-side RT used for attentional bias estimates. | `psychopy_builtin` | `config/*.yaml -> stimuli.right_target` | Timeout branch uses trigger `no_response`. |
+| `all_conditions` | `envelope` | `instruction_text`, `block_break`, `good_bye` | Chinese instruction, block summary, and task-end screens. | `W1989756802` | Task validity depends on explicit probe-side instruction and consistent response framing. | `psychopy_builtin` | `config/*.yaml -> stimuli.instruction_text/block_break/good_bye` | Participant-facing text is config-defined (good for localization). |

@@ -1,0 +1,64 @@
+task_id: T000003
+generated_at: "2026-03-02T08:25:55Z"
+selection_policy: manual_curation_dot_probe_foundation_plus_face_specific_variants
+citation_threshold: 100
+papers:
+  - id: W4213002248
+    title: "Attentional bias in emotional disorders."
+    year: 1986
+    journal: "Journal of Abnormal Psychology"
+    doi_or_url: "https://doi.org/10.1037/0021-843X.95.1.15"
+    citation_count: 2406
+    open_access: false
+    is_high_impact: true
+    used_for:
+      - task_workflow
+      - dot_probe_core_logic
+      - dependent_measures
+  - id: W1989756802
+    title: "Threat-related attentional bias in anxious and nonanxious individuals: A meta-analytic study."
+    year: 2007
+    journal: "Psychological Bulletin"
+    doi_or_url: "https://doi.org/10.1037/0033-2909.133.1.1"
+    citation_count: 3669
+    open_access: false
+    is_high_impact: true
+    used_for:
+      - paradigm_validity
+      - condition_semantics
+      - reporting_targets
+  - id: W2125651023
+    title: "Attentional Bias for Threatening Facial Expressions in Anxiety: Manipulation of Stimulus Duration"
+    year: 1998
+    journal: "Cognition & Emotion"
+    doi_or_url: "https://doi.org/10.1080/026999398379411"
+    citation_count: 460
+    open_access: false
+    is_high_impact: false
+    used_for:
+      - face_pair_stimulus_design
+      - cue_duration
+      - target_position_logic
+  - id: W2172073901
+    title: "Attentional bias to angry faces using the dot-probe task? It depends when you look for it"
+    year: 2005
+    journal: "Behaviour Research and Therapy"
+    doi_or_url: "https://doi.org/10.1016/j.brat.2005.10.004"
+    citation_count: 222
+    open_access: false
+    is_high_impact: false
+    used_for:
+      - timing_parameters
+      - face_emotion_conditions
+      - task_variant_considerations
+  - id: W2768274310
+    title: "Fleeting reliability in the dot-probe task"
+    year: 2017
+    journal: "Psychological Research"
+    doi_or_url: "https://doi.org/10.1007/s00426-017-0947-6"
+    citation_count: 170
+    open_access: true
+    is_high_impact: false
+    used_for:
+      - reliability_notes
+      - trial_count_considerations

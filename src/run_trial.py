@@ -47,9 +47,9 @@ def run_trial(
     cue_unit.show(duration=settings.fixation_duration, onset_trigger=settings.triggers.get("fixation_onset")).to_dict(trial_data)
 
     # phase: face_pair_preview
-    anticipation_unit = make_unit(unit_label="cues").add_stim(left_stim).add_stim(right_stim)
+    face_pair_unit = make_unit(unit_label="cues").add_stim(left_stim).add_stim(right_stim)
     set_trial_context(
-        anticipation_unit,
+        face_pair_unit,
         trial_id=trial_id,
         phase="face_pair_preview",
         deadline_s=settings.cue_duration,
@@ -60,7 +60,7 @@ def run_trial(
         stim_id=f"{condition_id}_faces",
         stim_features={"left_asset": left_asset, "right_asset": right_asset},
     )
-    anticipation_unit.show(
+    face_pair_unit.show(
         duration=settings.cue_duration,
         onset_trigger=settings.triggers.get(f"{condition_id}_cue_onset"),
     ).to_dict(trial_data)
@@ -98,6 +98,4 @@ def run_trial(
     )
     target_unit.to_dict(trial_data)
 
-    # outcome display
-    make_unit(unit_label="feedback").show(duration=0.0).to_dict(trial_data)
     return trial_data

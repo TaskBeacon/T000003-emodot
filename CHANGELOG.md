@@ -2,6 +2,25 @@
 
 All notable development changes for T000003-emodot are documented here.
 
+## [1.1.3] - 2026-03-02
+
+### Changed
+- Renamed legacy face-pair runtime variable from `anticipation_unit` to `face_pair_unit` in `src/run_trial.py` for paradigm-aligned naming.
+- Standardized `README.md` with recommended PsyFlow subsection headings:
+  - `### Controller Logic`
+  - `### a. Subject Info`
+  - `### b. Window Settings`
+  - `### c. Stimuli`
+  - `### d. Timing`
+- Updated task metadata in `taskbeacon.yaml`:
+  - release tag `v1.1.3`
+  - populated `cognitive_domain`
+  - populated literature `evidence`
+  - populated `maintainer`
+
+### Removed
+- Removed zero-duration terminal `feedback` marker from `src/run_trial.py`; trial now ends after `dot_probe_response`.
+
 ## [1.1.2] - 2026-02-23
 
 ### Changed
