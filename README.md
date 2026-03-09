@@ -1,4 +1,4 @@
-﻿# Emotional Dot-Probe Task (EmoDot)
+# Emotional Dot-Probe Task (EmoDot)
 
 ![Maturity: piloted](https://img.shields.io/badge/Maturity-piloted-16a34a?style=flat-square&labelColor=111827)
 
@@ -23,6 +23,7 @@ Participants respond with `f/j` to indicate target side.
 
 ## 2. Task Flow
 
+![Task flow](./task_flow.png)
 ### Block-Level Flow
 
 - Load config, runtime mode, triggers, window, and stimuli.

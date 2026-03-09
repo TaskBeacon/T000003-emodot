@@ -1,0 +1,149 @@
+{
+  "task_plot_spec": {
+    "spec_version": "0.2",
+    "meta": {
+      "task_name": "Emotional Dot-Probe Task (EmoDot)",
+      "mode": "existing",
+      "task_id": ""
+    },
+    "figure": {
+      "output": {
+        "filename": "task_flow.png",
+        "dpi": 300,
+        "width_in": 16.0,
+        "background": "white"
+      },
+      "layout": {
+        "max_conditions": 4,
+        "screens_per_timeline": 6,
+        "screen_overlap_ratio": 0.1,
+        "screen_slope": 0.08,
+        "screen_slope_deg": 25.0,
+        "timeline_gap": 0.18,
+        "screen_aspect_ratio": 1.4545454545454546,
+        "left_margin": 0.2,
+        "right_margin": 0.03,
+        "top_margin": 0.03,
+        "bottom_margin": 0.05,
+        "condition_label_gap": 0.014,
+        "phase_label_pad": 0.01,
+        "duration_label_gap": 0.006,
+        "timeline_arrow_gap": 0.01,
+        "timeline_arrow_screen_clearance": 0.007,
+        "timeline_arrow_text_clearance": 0.01,
+        "timeline_arrow_extra_per_screen": 0.015,
+        "timeline_arrow_min_y": 0.02,
+        "timeline_arrow_max_y": 0.96
+      }
+    },
+    "timelines": [
+      {
+        "condition": "PN_F_L",
+        "display_condition_label": "PN F L",
+        "phases": [
+          {
+            "phase_name": "pre face fixation",
+            "display_phase_label": "Fixation",
+            "duration_ms": {
+              "range": [
+                800,
+                1000
+              ]
+            },
+            "response_window_ms": null,
+            "display_timing_label": "800-1000 ms",
+            "stim_ids": [
+              "fixation"
+            ],
+            "stimulus_example": {
+              "summary": "+",
+              "modality": "visual",
+              "draw_hint": "text",
+              "render_items": [
+                {
+                  "kind": "text",
+                  "text": "+",
+                  "color": "white",
+                  "pos": null,
+                  "height": null
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "face pair preview",
+            "display_phase_label": "Face Pair Preview",
+            "duration_ms": {
+              "fixed": 500
+            },
+            "response_window_ms": null,
+            "display_timing_label": "500 ms",
+            "stim_ids": [
+              "PN_F_L_faces"
+            ],
+            "stimulus_example": {
+              "summary": "[dynamic:PN_F_L_faces]",
+              "modality": "other",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: PN_F_L_faces"
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "dot probe response",
+            "display_phase_label": "Probe",
+            "duration_ms": {
+              "fixed": 1000
+            },
+            "response_window_ms": {
+              "fixed": 1000
+            },
+            "display_timing_label": "1000 ms",
+            "stim_ids": [],
+            "stimulus_example": {
+              "summary": "[annotation] dot probe response",
+              "modality": "other",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "dot probe response"
+                }
+              ]
+            },
+            "notes": ""
+          }
+        ],
+        "condition_variants": [
+          "PN_F_R",
+          "NP_F_L",
+          "NP_F_R",
+          "SN_F_L",
+          "SN_F_R",
+          "NS_F_L",
+          "NS_F_R",
+          "PN_M_L",
+          "PN_M_R",
+          "NP_M_L",
+          "NP_M_R",
+          "SN_M_L",
+          "SN_M_R",
+          "NS_M_L",
+          "NS_M_R",
+          "NN_F_L",
+          "NN_F_R",
+          "NN_M_L",
+          "NN_M_R"
+        ],
+        "display_condition_note": "Also: PN F R, NP F L, NP F R, SN F L, SN F R, NS F L, NS F R, PN M L, PN M R, NP M L, NP M R, SN M L, SN M R, NS M L, N…"
+      }
+    ],
+    "legend": []
+  }
+}
