@@ -23,6 +23,8 @@ Participants respond with `f/j` to indicate target side.
 
 ## 2. Task Flow
 
+![Task Flow](task_flow.png)
+
 ![Task flow](./task_flow.png)
 ### Block-Level Flow
 
