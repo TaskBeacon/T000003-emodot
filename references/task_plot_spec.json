@@ -107,41 +107,339 @@
             "display_timing_label": "1000 ms",
             "stim_ids": [],
             "stimulus_example": {
-              "summary": "[annotation] dot probe response",
-              "modality": "other",
+              "summary": "[dynamic:left_anchor] + [dynamic:right_anchor] + Left Target",
+              "modality": "mixed",
               "draw_hint": "annotation",
               "render_items": [
                 {
                   "kind": "annotation",
-                  "text": "dot probe response"
+                  "text": "Dynamic: left_anchor"
+                },
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: right_anchor"
+                },
+                {
+                  "kind": "shape",
+                  "shape": "ring",
+                  "label": "Left Target",
+                  "color": "",
+                  "line_color": "",
+                  "line_width": 1.0,
+                  "pos": [
+                    -4.0,
+                    0.0
+                  ],
+                  "size": 0.1
                 }
               ]
             },
             "notes": ""
           }
-        ],
-        "condition_variants": [
-          "PN_F_R",
-          "NP_F_L",
-          "NP_F_R",
-          "SN_F_L",
-          "SN_F_R",
-          "NS_F_L",
-          "NS_F_R",
-          "PN_M_L",
-          "PN_M_R",
-          "NP_M_L",
-          "NP_M_R",
-          "SN_M_L",
-          "SN_M_R",
-          "NS_M_L",
-          "NS_M_R",
-          "NN_F_L",
-          "NN_F_R",
-          "NN_M_L",
-          "NN_M_R"
-        ],
-        "display_condition_note": "Also: PN F R, NP F L, NP F R, SN F L, SN F R, NS F L, NS F R, PN M L, PN M R, NP M L, NP M R, SN M L, SN M R, NS M L, N…"
+        ]
+      },
+      {
+        "condition": "PN_F_R",
+        "display_condition_label": "PN F R",
+        "phases": [
+          {
+            "phase_name": "pre face fixation",
+            "display_phase_label": "Fixation",
+            "duration_ms": {
+              "range": [
+                800,
+                1000
+              ]
+            },
+            "response_window_ms": null,
+            "display_timing_label": "800-1000 ms",
+            "stim_ids": [
+              "fixation"
+            ],
+            "stimulus_example": {
+              "summary": "+",
+              "modality": "visual",
+              "draw_hint": "text",
+              "render_items": [
+                {
+                  "kind": "text",
+                  "text": "+",
+                  "color": "white",
+                  "pos": null,
+                  "height": null
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "face pair preview",
+            "display_phase_label": "Face Pair Preview",
+            "duration_ms": {
+              "fixed": 500
+            },
+            "response_window_ms": null,
+            "display_timing_label": "500 ms",
+            "stim_ids": [
+              "PN_F_R_faces"
+            ],
+            "stimulus_example": {
+              "summary": "[dynamic:PN_F_R_faces]",
+              "modality": "other",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: PN_F_R_faces"
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "dot probe response",
+            "display_phase_label": "Probe",
+            "duration_ms": {
+              "fixed": 1000
+            },
+            "response_window_ms": {
+              "fixed": 1000
+            },
+            "display_timing_label": "1000 ms",
+            "stim_ids": [],
+            "stimulus_example": {
+              "summary": "[dynamic:left_anchor] + [dynamic:right_anchor] + Left Target",
+              "modality": "mixed",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: left_anchor"
+                },
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: right_anchor"
+                },
+                {
+                  "kind": "shape",
+                  "shape": "ring",
+                  "label": "Left Target",
+                  "color": "",
+                  "line_color": "",
+                  "line_width": 1.0,
+                  "pos": [
+                    -4.0,
+                    0.0
+                  ],
+                  "size": 0.1
+                }
+              ]
+            },
+            "notes": ""
+          }
+        ]
+      },
+      {
+        "condition": "NP_F_L",
+        "display_condition_label": "NP F L",
+        "phases": [
+          {
+            "phase_name": "pre face fixation",
+            "display_phase_label": "Fixation",
+            "duration_ms": {
+              "range": [
+                800,
+                1000
+              ]
+            },
+            "response_window_ms": null,
+            "display_timing_label": "800-1000 ms",
+            "stim_ids": [
+              "fixation"
+            ],
+            "stimulus_example": {
+              "summary": "+",
+              "modality": "visual",
+              "draw_hint": "text",
+              "render_items": [
+                {
+                  "kind": "text",
+                  "text": "+",
+                  "color": "white",
+                  "pos": null,
+                  "height": null
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "face pair preview",
+            "display_phase_label": "Face Pair Preview",
+            "duration_ms": {
+              "fixed": 500
+            },
+            "response_window_ms": null,
+            "display_timing_label": "500 ms",
+            "stim_ids": [
+              "NP_F_L_faces"
+            ],
+            "stimulus_example": {
+              "summary": "[dynamic:NP_F_L_faces]",
+              "modality": "other",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: NP_F_L_faces"
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "dot probe response",
+            "display_phase_label": "Probe",
+            "duration_ms": {
+              "fixed": 1000
+            },
+            "response_window_ms": {
+              "fixed": 1000
+            },
+            "display_timing_label": "1000 ms",
+            "stim_ids": [],
+            "stimulus_example": {
+              "summary": "[dynamic:left_anchor] + [dynamic:right_anchor] + Left Target",
+              "modality": "mixed",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: left_anchor"
+                },
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: right_anchor"
+                },
+                {
+                  "kind": "shape",
+                  "shape": "ring",
+                  "label": "Left Target",
+                  "color": "",
+                  "line_color": "",
+                  "line_width": 1.0,
+                  "pos": [
+                    -4.0,
+                    0.0
+                  ],
+                  "size": 0.1
+                }
+              ]
+            },
+            "notes": ""
+          }
+        ]
+      },
+      {
+        "condition": "NP_F_R",
+        "display_condition_label": "NP F R",
+        "phases": [
+          {
+            "phase_name": "pre face fixation",
+            "display_phase_label": "Fixation",
+            "duration_ms": {
+              "range": [
+                800,
+                1000
+              ]
+            },
+            "response_window_ms": null,
+            "display_timing_label": "800-1000 ms",
+            "stim_ids": [
+              "fixation"
+            ],
+            "stimulus_example": {
+              "summary": "+",
+              "modality": "visual",
+              "draw_hint": "text",
+              "render_items": [
+                {
+                  "kind": "text",
+                  "text": "+",
+                  "color": "white",
+                  "pos": null,
+                  "height": null
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "face pair preview",
+            "display_phase_label": "Face Pair Preview",
+            "duration_ms": {
+              "fixed": 500
+            },
+            "response_window_ms": null,
+            "display_timing_label": "500 ms",
+            "stim_ids": [
+              "NP_F_R_faces"
+            ],
+            "stimulus_example": {
+              "summary": "[dynamic:NP_F_R_faces]",
+              "modality": "other",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: NP_F_R_faces"
+                }
+              ]
+            },
+            "notes": ""
+          },
+          {
+            "phase_name": "dot probe response",
+            "display_phase_label": "Probe",
+            "duration_ms": {
+              "fixed": 1000
+            },
+            "response_window_ms": {
+              "fixed": 1000
+            },
+            "display_timing_label": "1000 ms",
+            "stim_ids": [],
+            "stimulus_example": {
+              "summary": "[dynamic:left_anchor] + [dynamic:right_anchor] + Left Target",
+              "modality": "mixed",
+              "draw_hint": "annotation",
+              "render_items": [
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: left_anchor"
+                },
+                {
+                  "kind": "annotation",
+                  "text": "Dynamic: right_anchor"
+                },
+                {
+                  "kind": "shape",
+                  "shape": "ring",
+                  "label": "Left Target",
+                  "color": "",
+                  "line_color": "",
+                  "line_width": 1.0,
+                  "pos": [
+                    -4.0,
+                    0.0
+                  ],
+                  "size": 0.1
+                }
+              ]
+            },
+            "notes": ""
+          }
+        ]
       }
     ],
     "legend": []

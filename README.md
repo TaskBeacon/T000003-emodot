@@ -25,7 +25,6 @@ Participants respond with `f/j` to indicate target side.
 
 ![Task Flow](task_flow.png)
 
-![Task flow](./task_flow.png)
 ### Block-Level Flow
 
 - Load config, runtime mode, triggers, window, and stimuli.
@@ -132,4 +131,3 @@ See `assets/README.md` for:
 ## 4. Methods (for academic publication)
 
 Participants view emotional/neutral face pairs followed by a lateralized dot probe and respond with `f/j` to indicate probe side. Each trial uses a fixation stage, a face-pair preview stage, and a response stage for probe discrimination. The paradigm targets attentional bias quantification under controlled visual timing and trigger-synchronized execution.
-

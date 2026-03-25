@@ -1,14 +1,14 @@
 # Task Plot Audit
 
-- generated_at: 2026-03-10T00:10:02
+- generated_at: 2026-03-24T19:33:31
 - mode: existing
-- task_path: E:\Taskbeacon\T000003-emodot
+- task_path: E:\xhmhc\TaskBeacon\T000003-emodot
 
 ## 1. Inputs and provenance
 
-- E:\Taskbeacon\T000003-emodot\README.md
-- E:\Taskbeacon\T000003-emodot\config\config.yaml
-- E:\Taskbeacon\T000003-emodot\src\run_trial.py
+- E:\xhmhc\TaskBeacon\T000003-emodot\README.md
+- E:\xhmhc\TaskBeacon\T000003-emodot\config\config.yaml
+- E:\xhmhc\TaskBeacon\T000003-emodot\src\run_trial.py
 
 ## 2. Evidence extracted from README
 
@@ -104,17 +104,17 @@
 - screen_aspect_ratio: 1.4545454545454546
 - qa_mode: local
 - auto_layout_feedback:
-  - layout pass 1: crop-only; left=0.009, right=0.032, blank=0.115
+  - layout pass 1: crop-only; left=0.044, right=0.044, blank=0.139
 - auto_layout_feedback_records:
   - pass: 1
-    metrics: {'left_ratio': 0.0094, 'right_ratio': 0.032, 'blank_ratio': 0.1151}
+    metrics: {'left_ratio': 0.0437, 'right_ratio': 0.0437, 'blank_ratio': 0.1395}
 
 ## 7. Output files and checksums
 
-- E:\Taskbeacon\T000003-emodot\references\task_plot_spec.yaml: sha256=4ad7fc46ed7ee092ad935fff00d330b12d58084a6e0ddfcaea0d693816c7f351
-- E:\Taskbeacon\T000003-emodot\references\task_plot_spec.json: sha256=c41afb68098b1aba99abe01390ce8174b982515fc2789c5cb7a7017e136fb6fa
-- E:\Taskbeacon\T000003-emodot\references\task_plot_source_excerpt.md: sha256=3db9d555a6a7a64e5e4e235d4a221d6aac82c93ad62bd201b3c6782ecc189e54
-- E:\Taskbeacon\T000003-emodot\task_flow.png: sha256=d3c2ce96f615dade4298a46bb3eaa375c7426ca371222c5467c20f3919018947
+- E:\xhmhc\TaskBeacon\T000003-emodot\references\task_plot_spec.yaml: sha256=b1561125cfaff8b6037349dd7ee8194caf4a293073e6fffe74ae5cd6a8d8fb12
+- E:\xhmhc\TaskBeacon\T000003-emodot\references\task_plot_spec.json: sha256=250e7723fda2a2bdee81aea690d9553084215facce74be724a59f2c1be7deaa3
+- E:\xhmhc\TaskBeacon\T000003-emodot\references\task_plot_source_excerpt.md: sha256=30c4b6ddd96d8073540fdb8842a7763fe96bc1733ce876360ea1ae3a8ec220ad
+- E:\xhmhc\TaskBeacon\T000003-emodot\task_flow.png: sha256=3f3f66867cda7c348e0f5d0f55aa3c2280088b35f63f822836227f0bda080321
 
 ## 8. Inferred/uncertain items
 
@@ -138,4 +138,4 @@
 - NN_F_R:dot probe response:stimulus unresolved, used textual fallback
 - NN_M_L:dot probe response:stimulus unresolved, used textual fallback
 - NN_M_R:dot probe response:stimulus unresolved, used textual fallback
-- collapsed equivalent condition logic into representative timeline: PN_F_L, PN_F_R, NP_F_L, NP_F_R, SN_F_L, SN_F_R, NS_F_L, NS_F_R, PN_M_L, PN_M_R, NP_M_L, NP_M_R, SN_M_L, SN_M_R, NS_M_L, NS_M_R, NN_F_L, NN_F_R, NN_M_L, NN_M_R
+- timelines truncated from 20 to 4 by max_conditions
