@@ -101,11 +101,11 @@ Participants respond with `f/j` to indicate target side.
 ## Assets and Copyright Workaround
 
 Original emotional face stimuli are not committed because of copyright constraints.
-This repo includes placeholder BMP assets for QA/sim/contract validation only.
+This repo includes generated schematic BMP face assets for open, reproducible task execution.
 
 See `assets/README.md` for:
-- placeholder naming contract (`HF*`, `HM*`, `NEF*`, `NEM*`, `SAF*`, `SAM*`)
-- how to replace placeholders with licensed task stimuli
+- filename prefix contract (`HF*`, `HM*`, `NEF*`, `NEM*`, `SAF*`, `SAM*`)
+- how to replace generated assets with study-specific approved stimuli
 - expected path/location requirements
 
 ## Outputs

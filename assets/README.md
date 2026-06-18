@@ -1,33 +1,33 @@
-﻿# EmoDot Assets
+# EmoDot Assets
 
-## Copyright Notice
+## Asset Policy
 
-The original emotional face image set is **not distributed** in this repository.
-Only placeholder BMP files are included so QA/sim/validation pipelines can run.
+The committed BMP files are generated schematic face assets designed for the
+TaskBeacon EmoDot implementation. They provide concrete positive, sad, and
+neutral face-expression categories while avoiding restricted third-party face
+image databases.
 
-## Placeholder Files (QA/Sim Only)
+## Filename Contract
 
-This task loader groups files by filename prefix:
+The task loader groups BMP files by filename prefix:
 
 - `HF*` -> positive female
 - `HM*` -> positive male
 - `NEF*` -> neutral female
 - `NEM*` -> neutral male
-- `SAF*` -> negative female
-- `SAM*` -> negative male
+- `SAF*` -> sad female
+- `SAM*` -> sad male
 
-Keep at least one BMP per prefix to allow task startup.
+Keep at least one BMP per prefix so all configured conditions can run.
 
-## Replacing with Licensed Stimuli
+## Replacing With Study-Specific Stimuli
 
-1. Remove placeholder BMP files.
-2. Copy licensed stimuli into this folder with the same prefix scheme.
-3. Keep `.bmp` extension (or update loader in `src/utils.py` if using a different format).
-4. Re-run:
-   - `psyflow-validate T000003-emodot`
-   - `psyflow-qa T000003-emodot --config config/config_qa.yaml --no-maturity-update`
+1. Copy approved study stimuli into this folder with the same prefix scheme.
+2. Keep `.bmp` extension, or update `src/utils.py` if using a different format.
+3. Re-run the task standard check, TAPS validation, QA, and simulations.
 
 ## Important
 
-Behavioral/EEG data quality claims should only be made when using real licensed stimuli,
-not placeholders.
+The generated assets are suitable for open, reproducible task execution and
+pipeline validation. Studies requiring validated affective face databases should
+replace them with approved materials and document that source in `references/`.

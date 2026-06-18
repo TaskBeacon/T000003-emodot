@@ -2,6 +2,13 @@
 
 All notable development changes for T000003-emodot are documented here.
 
+## [1.1.4] - 2026-06-18
+
+### Changed
+- Replaced QA-only face BMPs with generated schematic positive, sad, and neutral face assets.
+- Expanded `references/stimulus_mapping.md` to include every configured condition token.
+- Updated asset, README, and reference notes to describe generated open assets and study-specific replacement policy.
+
 ## [1.1.3] - 2026-03-02
 
 ### Changed
@@ -52,7 +59,7 @@ All notable development changes for T000003-emodot are documented here.
   - `responders/README.md`
   - `responders/task_sampler.py`
 - Added `outputs/.gitkeep` and standardized output folder handling.
-- Added `assets/README.md` with placeholder asset and replacement guidance.
+- Added `assets/README.md` with task asset policy and replacement guidance.
 
 ### Changed
 - Refactored `src/run_trial.py` to include `set_trial_context(...)` and standardized stage tokens.

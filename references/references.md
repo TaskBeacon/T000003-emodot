@@ -18,4 +18,4 @@
 ## Notes
 
 - T000003 uses a face-based dot-probe variant with positive, sad, and neutral expressions plus gender-specific asset pools.
-- Current repository face BMPs are placeholders for QA/sim; production studies should swap in licensed stimulus sets.
+- Current repository face BMPs are generated schematic assets for open execution; studies using validated affective face databases should document those approved materials before data collection.
