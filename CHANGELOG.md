@@ -2,6 +2,14 @@
 
 All notable development changes for T000003-emodot are documented here.
 
+## [Unreleased]
+
+### Fixed
+- Added trial context metadata for the inter-stimulus interval so the visible fixation phase is responder-auditable.
+
+### Changed
+- Normalized task-local `src/utils.py` import order and spacing without changing stimulus assignment behavior.
+
 ## [1.1.4] - 2026-06-18
 
 ### Changed

@@ -65,7 +65,25 @@ def run_trial(
         onset_trigger=settings.triggers.get(f"{condition_id}_cue_onset"),
     ).to_dict(trial_data)
 
-    make_unit(unit_label="interval").add_stim(stim_bank.get("fixation")).show(duration=settings.interval_duration).to_dict(trial_data)
+    interval_unit = make_unit(unit_label="interval").add_stim(stim_bank.get("fixation"))
+    set_trial_context(
+        interval_unit,
+        trial_id=trial_id,
+        phase="inter_stimulus_interval",
+        deadline_s=settings.interval_duration,
+        valid_keys=[],
+        block_id=block_id,
+        condition_id=condition_id,
+        task_factors={
+            "condition": condition_id,
+            "stage": "inter_stimulus_interval",
+            "target_position": target_position,
+            "block_idx": block_idx,
+        },
+        stim_id="fixation",
+        stim_features={"left_asset": left_asset, "right_asset": right_asset},
+    )
+    interval_unit.show(duration=settings.interval_duration).to_dict(trial_data)
 
     # phase: dot_probe_response
     target_stim = stim_bank.get(f"{target_position}_target")
