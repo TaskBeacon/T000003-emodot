@@ -3,7 +3,7 @@ Asset type: TaskBeacon task flow diagram
 Primary request: Create a clean, publication-ready task flow diagram as a timeline collection for the behavioral task described below.
 
 Task: Emotional Dot-Probe Task (EmoDot)
-Goal measured: attentional bias to emotional face cues
+Construct: attentional bias / emotion
 Rows/conditions:
 - Positive-Neutral: representative PN / NP trials; positive and neutral faces swap left/right; female and male pools exist
 - Sad-Neutral: representative SN / NS trials; sad and neutral faces swap left/right; female and male pools exist
@@ -26,17 +26,18 @@ Visual requirements:
 - Place condition labels at the left of each row.
 - Use short labels only; avoid paragraphs inside the image.
 - Make all text legible at normal document preview size.
-- Leave clean whitespace in the top-right corner for a fixed TaskBeacon logo lockup that will be added after generation.
+- Leave a clean blank header band across the top 15-18% of the image. This band is reserved for a fixed title, `Construct: ...` subtitle, and TaskBeacon logo lockup that will be added after generation.
 
 Accuracy constraints:
 - Do not invent phases, stimuli, condition names, keys, rewards, feedback, or timings.
 - Do not add people, lab equipment, decorative scenes, logos, or unrelated icons.
-- Do not draw any logo, watermark, brand mark, or `TaskBeacon` text inside the generated image.
+- Do not draw the task title, construct subtitle, any logo, watermark, brand mark, or `TaskBeacon` text inside the generated image.
+- Draw only the timeline content below the blank header band.
 - If a detail is unknown, omit it rather than guessing.
 - Preserve these exact terms where used: EmoDot, Positive-Neutral, Sad-Neutral, Neutral-Neutral, PN, NP, SN, NS, NN, +, 0.8-1.0 s, 0.5 s, 0.4-0.6 s, 1.0 s, f, j, left dot, right dot.
 - Show `f` only for left dot and `j` only for right dot.
 
 Style:
-TaskBeacon scientific infographic style: clean vector-like raster image, organized spacing, gray screen boxes, restrained color accents, and a blank top-right logo-safe area.
+TaskBeacon scientific infographic style: clean vector-like raster image, organized spacing, gray screen boxes, restrained color accents, and a blank header-safe area.
 
 Collapse equivalent conditions into representative rows and show variants as small parenthetical notes in the row label.
