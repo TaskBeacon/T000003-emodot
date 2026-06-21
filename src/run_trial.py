@@ -3,7 +3,7 @@ from pathlib import Path
 
 from psyflow import StimUnit, set_trial_context, next_trial_id
 
-from src import assign_stim_from_condition
+from src import emodot_condition_to_trial_info
 
 # trial stages use task-specific phase labels via set_trial_context(...)
 def run_trial(
@@ -12,18 +12,17 @@ def run_trial(
     settings,
     condition,
     stim_bank,
-    asset_pool,
     trigger_runtime=None,
     block_id=None,
     block_idx=None,
 ):
     """Run one emotional dot-probe trial."""
     trial_id = next_trial_id()
-    condition_id = str(condition)
+    trial_info = emodot_condition_to_trial_info(condition)
+    condition_id = str(trial_info["condition"])
     trial_data = {"condition": condition_id}
     make_unit = partial(StimUnit, win=win, kb=kb, runtime=trigger_runtime)
 
-    trial_info = assign_stim_from_condition(condition_id, asset_pool)
     left_asset = str(Path("assets") / trial_info["left_stim"])
     right_asset = str(Path("assets") / trial_info["right_stim"])
     left_stim = stim_bank.rebuild("left_stim", image=left_asset)

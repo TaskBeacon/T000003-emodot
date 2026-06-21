@@ -21,7 +21,7 @@ from psyflow import (
     runtime_context,
 )
 
-from src import AssetPool, get_stim_list_from_assets, run_trial
+from src import generate_emodot_conditions, get_stim_list_from_assets, run_trial
 
 
 MODES = ("human", "qa", "sim")
@@ -77,8 +77,6 @@ def run(options: TaskRunOptions):
         settings.save_to_json()
 
         stim_list = get_stim_list_from_assets(str(task_root / "assets"))
-        asset_pool = AssetPool(stim_list, seed=getattr(settings, "overall_seed", 2025))
-
         trigger_runtime.send(settings.triggers.get("exp_onset"))
         instruction = StimUnit("instruction_text", win, kb, runtime=trigger_runtime).add_stim(stim_bank.get("instruction_text"))
         if bool(getattr(settings, "voice_enabled", True)):
@@ -102,14 +100,13 @@ def run(options: TaskRunOptions):
                     window=win,
                     keyboard=kb,
                 )
-                .generate_conditions()
+                .generate_conditions(func=generate_emodot_conditions, stim_list=stim_list)
                 .on_start(lambda b: trigger_runtime.send(settings.triggers.get("block_onset")))
                 .on_end(lambda b: trigger_runtime.send(settings.triggers.get("block_end")))
                 .run_trial(
                     partial(
                         run_trial,
                         stim_bank=stim_bank,
-                        asset_pool=asset_pool,
                         trigger_runtime=trigger_runtime,
                     ),
                     block_id=f"block_{block_i}",
